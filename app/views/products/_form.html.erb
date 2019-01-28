@@ -27,8 +27,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :cateegory_id %>
-    <%= form.text_field :cateegory_id %>
+    <%= select_tag(:category_id, options_for_select(@categories)) %>
   </div>
 
   <div class="actions">
