@@ -1,15 +1,123 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Essence</title>
+    <title>Essence - Fashion Ecommerce</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'  %>
+    <%= javascript_include_tag 'application'%>
+    <%= favicon_link_tag 'core-img/favicon.ico' %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <%= stylesheet_link_tag    'core-style.css' %>
+    <%= stylesheet_link_tag    'style.css' %>
+  
+
   </head>
 
   <body>
+    <!-- ##### Header Area Start ##### -->
+    <header class="header_area">
+        <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
+            <!-- Classy Menu -->
+            <nav class="classy-navbar" id="essenceNav">
+                <!-- Logo -->
+                <%= link_to image_tag("core-img/logo.png"), root_path, class: "nav-brand" %>
+                <!-- Navbar Toggler -->
+                <div class="classy-navbar-toggler">
+                    <span class="navbarToggler"><span></span><span></span><span></span></span>
+                </div>
+                <!-- Menu -->
+                <div class="classy-menu">
+                    <!-- close btn -->
+                    <div class="classycloseIcon">
+                        <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                    </div>
+                    <!-- Nav Start -->
+                    <div class="classynav">
+                        <ul>
+                            <li><%= link_to 'Shop', root_path %></li>
+                            <li><%= link_to 'Category', categories_path %>
+                              <ul class="dropdown">
+                                    <li><%= link_to 'Clothing', category_path(1) %></li>
+                                    <li><%= link_to 'Shoes', category_path(2) %></li>
+                                    <li><%= link_to 'Accessories', category_path(3) %></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Nav End -->
+                </div>
+            </nav>
+
+            <!-- Header Meta Data -->
+            <div class="header-meta d-flex clearfix justify-content-end">
+                <!-- Search Area -->
+                <div class="search-area">
+                    <form action="#" method="post">
+                        <input type="search" name="search" id="headerSearch" placeholder="Type for search">
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+                <!-- Favourite Area -->
+                <div class="favourite-area">
+                    <a href="#"><%=image_tag("core-img/heart.svg")%></a>
+                </div>
+                <!-- User Login Info -->
+                <div class="user-login-info">
+                    <a href="#"><%=image_tag("core-img/user.svg")%></a>
+                </div>
+            </div>
+
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+
     <%= yield %>
-  </body>
+
+
+
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer_area clearfix">
+        <div class="container">
+            <div class="row">
+                <!-- Single Widget Area -->
+                <div class="col-12 col-md-6">
+                    <div class="single_widget_area d-flex mb-30">
+                        <!-- Logo -->
+                        <div class="footer-logo mr-50">
+                            <%= link_to image_tag("core-img/logo2.png"), root_path %>
+                        </div>
+                        <!-- Footer Menu -->
+                        <div class="footer_menu">
+                            <ul>
+                                <li><%= link_to 'Shop', root_path %></li>
+                                <li><%= link_to 'All Categories', categories_path %></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col-md-12 text-center">
+                    <p> Copyright &copy; All rights reserved </p>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+
+    <%= javascript_include_tag 'jquery-2.2.4.min.js' %>
+    <%= javascript_include_tag 'popper.min.js' %>
+    <%= javascript_include_tag 'bootstrap.min.js' %>
+    <%= javascript_include_tag 'plugins.js' %>
+    <%= javascript_include_tag 'classy-nav.min.js' %>
+    <%= javascript_include_tag 'active.js' %>
+
+
+
+   </body>
 </html>

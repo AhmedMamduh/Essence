@@ -1,33 +1,162 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Products</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Image url</th>
-      <th>Price</th>
-      <th>Category</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+    <!-- ##### Welcome Area Start ##### -->
+    <section class="welcome_area bg-img background-overlay" style="background-image: url(<%= asset_path('bg-img/bg-1.jpg')%>);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="hero-content">
+                        <h2>New Collection</h2>
+                        <%= link_to 'view collection', categories_path, class: "btn essence-btn"  %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Welcome Area End ##### -->
 
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= product.title %></td>
-        <td><%= image_tag(product.image_url) %></td>
-        <td><%= product.price %></td>
-        <td><%= link_to Category.find(product.category_id).name, category_path(product.category_id) %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <!-- ##### Top Catagory Area Start ##### -->
+    <div class="top_catagory_area section-padding-80 clearfix">
+        <div class="container">
+            <div class="row justify-content-center">
+                <!-- Single Catagory -->
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(<%= asset_path('bg-img/bg-2.jpg')%>);">
+                        <div class="catagory-content">
+                          <%= link_to 'Clothing', category_path(1) %>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Catagory -->
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(<%= asset_path('bg-img/bg-3.jpg')%>);">
+                        <div class="catagory-content">
+                          <%= link_to 'Shoes', category_path(2) %>
+                        </div>
+                    </div>
+                </div>
+                <!-- Single Catagory -->
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url(<%= asset_path('bg-img/bg-4.jpg')%>);">
+                        <div class="catagory-content">
+                          <%= link_to 'Accessories', category_path(3) %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Top Catagory Area End ##### -->
 
-<br>
+    <!-- ##### CTA Area Start ##### -->
+    <div class="cta-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="cta-content bg-img background-overlay" style="background-image: url(<%= asset_path('bg-img/bg-5.jpg')%>);">
+                        <div class="h-100 d-flex align-items-center justify-content-end">
+                            <div class="cta--text">
+                                <h6>-60%</h6>
+                                <h2>Global Sale</h2>
+                                <%= link_to 'Buy Now', categories_path, class: "btn essence-btn"  %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### CTA Area End ##### -->
 
-<%= link_to 'New Product', new_product_path %>
+
+    <!-- ##### New Arrivals Area Start ##### -->
+    <section class="new_arrivals_area section-padding-80 clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-center">
+                        <h2>Popular Products</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="popular-products-slides">
+
+                        <% @products.each do |product| %>
+
+                        <!-- Single Product -->
+                        <div class="single-product-wrapper">
+                            <!-- Product Image -->
+                            <div class="product-img">
+                                <%= image_tag(product.image_url) %>
+                                <!-- Favourite -->
+                                <div class="product-favourite">
+                                    <a href="#" class="favme fa fa-heart"></a>
+                                </div>
+                            </div>
+                            <!-- Product Description -->
+                            <div class="product-description">
+                                  <span><%= Category.find(product.category_id).name%></span>
+                                    <h6><%= link_to product.title, product %></h6>
+                                <p class="product-price"><%= number_to_currency(product.price, :unit => "EGP ") %></p>
+                                <p> <%= link_to 'Edit', edit_product_path(product) %>
+                                    <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+
+                                <!-- Hover Content -->
+                                <div class="hover-content">
+                                </div>
+                            </div>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section-heading text-center">
+                        <h2><%= link_to 'New Product', new_product_path, class: "btn essence-btn" %></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- ##### New Arrivals Area End ##### -->
+
+
+
+    <!-- ##### Brands Area Start ##### -->
+    <div class="brands-area d-flex align-items-center justify-content-between">
+        <!-- Brand Logo -->
+        <div class="single-brands-logo">
+            <%= image_tag "core-img/brand1.png"%>
+        </div>
+        <!-- Brand Logo -->
+        <div class="single-brands-logo">
+            <%= image_tag "core-img/brand2.png"%>
+        </div>
+        <!-- Brand Logo -->
+        <div class="single-brands-logo">
+            <%= image_tag "core-img/brand3.png"%>
+        </div>
+        <!-- Brand Logo -->
+        <div class="single-brands-logo">
+            <%= image_tag "core-img/brand4.png"%>
+        </div>
+        <!-- Brand Logo -->
+        <div class="single-brands-logo">
+            <%= image_tag "core-img/brand5.png"%>
+        </div>
+        <!-- Brand Logo -->
+        <div class="single-brands-logo">
+            <%= image_tag "core-img/brand6.png"%>
+        </div>
+    </div>
+    <!-- ##### Brands Area End ##### -->

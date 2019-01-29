@@ -1,24 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @product.title %>
-</p>
+    <!-- ##### Single Product Details Area Start ##### -->
+    <section class="single_product_details_area d-flex align-items-center">
 
-<p>
-  <strong>Image url:</strong>
-  <%= image_tag(@product.image_url) %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  <%= @product.price %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @product.category.name %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+        <!-- Single Product Thumb -->
+        <div class="single_product_thumb clearfix">
+        	<div class="owl-show">
+                <%= image_tag(@product.image_url) %>
+            </div>
+        </div>
+      
+        <!-- Single Product Description -->
+        <div class="single_product_desc clearfix">
+        	<span><%= @product.category.name %></span>
+                <h2><%= @product.title %></h2>
+            <p class="product-price"> <%= number_to_currency(@product.price, :unit => "EGP ") %> </p>
+           
+            <!-- Form -->
+            <form class="cart-form clearfix" method="post">
+                <!-- Cart & Favourite Box -->
+                <div class="cart-fav-box d-flex align-items-center">
+                    <!-- Favourite -->
+                    <div class="product-favourite ml-4">
+                        <a href="#" class="favme fa fa-heart"></a>
+                    </div>
+                </div>
+                    <%= link_to 'Edit', edit_product_path(@product) %> |
+					<%= link_to 'Back', url_for(:back) %>
+            </form>
+        </div>
+    </section>
