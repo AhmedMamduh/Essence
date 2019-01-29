@@ -24,7 +24,8 @@ class FavoritesController < ApplicationController
   # POST /favorites
   # POST /favorites.json
   def create
-    @favorite = Favorite.new(favorite_params)
+    product = Product.find(params[:product_id])
+    @favorite = Favorite.new(product_id: product.id)
 
     respond_to do |format|
       if @favorite.save
