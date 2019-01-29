@@ -22,11 +22,12 @@
                 <div class="cart-fav-box d-flex align-items-center">
                     <!-- Favourite -->
                     <div class="product-favourite ml-4">
-                        <a href="#" class="favme fa fa-heart"></a>
+                        <%= link_to "", favorites_path(product_id: @product.id), method: :post, remote: true, class: "favme fa fa-heart" %>
+                        <br>
+                        <%= link_to 'Back', url_for(:back) %>
                     </div>
                 </div>
-                    <%= link_to 'Edit', edit_product_path(@product) %> |
-					<%= link_to 'Back', url_for(:back) %>
+					
             </form>
         </div>
     </section>

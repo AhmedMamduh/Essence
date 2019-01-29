@@ -59,9 +59,13 @@
                         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                 </div>
-                <!-- Favourite Area -->
+                <!-- Favourite Area Logo-->
                 <div class="favourite-area">
-                    <a href="#"><%=image_tag("core-img/heart.svg")%></a>
+                    <%=link_to image_tag("core-img/heart.svg"), favorites_path %>
+                </div>
+                <!-- Favourite Area Count-->
+                <div id="logo">
+                    <%= render("favorites/fav_logo")%>
                 </div>
                 <!-- User Login Info -->
                 <div class="user-login-info">

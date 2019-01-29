@@ -34,12 +34,7 @@
                                     <% @categories.each do |category| %>
 
                                     <li data-toggle="collapse">
-                                        <%= link_to category.name , category  %>
-                                        <ul class="sub-menu collapse show" >
-                                            <li><%= link_to 'Edit', edit_category_path(category) %></li>
-                                            <li><%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-                                          </ul>
-                                    </li>
+                                        <%= link_to category.name , category  %></li>
                                     <% end %>
 
                                     <%= link_to 'New Category', new_category_path %>
@@ -75,7 +70,7 @@
                                       <%= image_tag(product.image_url) %>
                                         <!-- Favourite -->
                                         <div class="product-favourite">
-                                            <a href="#" class="favme fa fa-heart"></a>
+                                            <%= link_to "", favorites_path(product_id: product.id), method: :post, remote: true, class: "favme fa fa-heart" %>
                                         </div>
                                     </div>
 
@@ -84,10 +79,6 @@
                                         <span><%= Category.find(product.category_id).name%></span>
                                             <h6><%= link_to product.title, product %></h6>
                                         <p class="product-price"><%= number_to_currency(product.price, :unit => "EGP ") %></p>
-
-                                        <!-- Hover Content -->
-                                        <div class="hover-content">
-                                        </div>
                                     </div>
 
                                 </div>

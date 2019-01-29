@@ -25,15 +25,15 @@ class FavoritesController < ApplicationController
   # POST /favorites.json
   def create
     product = Product.find(params[:product_id])
-    @favorite = Favorite.new(product_id: product.id)
-
-    respond_to do |format|
+    current_product_fevorite = Favorite.find_by(product_id: product.id)
+    
+    if current_product_fevorite
+      current_product_fevorite.destroy
+    else
+      @favorite = Favorite.new(product_id: product.id)
       if @favorite.save
-        format.html { redirect_to @favorite, notice: 'Favorite was successfully created.' }
-        format.json { render :show, status: :created, location: @favorite }
       else
-        format.html { render :new }
-        format.json { render json: @favorite.errors, status: :unprocessable_entity }
+        render :new
       end
     end
   end
@@ -57,7 +57,7 @@ class FavoritesController < ApplicationController
   def destroy
     @favorite.destroy
     respond_to do |format|
-      format.html { redirect_to favorites_url, notice: 'Favorite was successfully destroyed.' }
+      format.html { redirect_to favorites_url, notice: 'Product removed from favorites.' }
       format.json { head :no_content }
     end
   end

@@ -96,7 +96,7 @@
                                 <%= image_tag(product.image_url) %>
                                 <!-- Favourite -->
                                 <div class="product-favourite">
-                                  <%= link_to "", favorites_path(product_id: product.id), method: :post, class: "favme fa fa-heart" %>
+                                  <%= link_to "", favorites_path(product_id: product.id), method: :post, remote: true, class: "favme fa fa-heart" %>
                                 </div>
                             </div>
                             <!-- Product Description -->
@@ -104,12 +104,6 @@
                                   <span><%= Category.find(product.category_id).name%></span>
                                     <h6><%= link_to product.title, product %></h6>
                                 <p class="product-price"><%= number_to_currency(product.price, :unit => "EGP ") %></p>
-                                <p> <%= link_to 'Edit', edit_product_path(product) %>
-                                    <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></p>
-
-                                <!-- Hover Content -->
-                                <div class="hover-content">
-                                </div>
                             </div>
                         </div>
                         <% end %>
