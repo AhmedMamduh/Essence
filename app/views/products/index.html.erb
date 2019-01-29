@@ -96,7 +96,7 @@
                                 <%= image_tag(product.image_url) %>
                                 <!-- Favourite -->
                                 <div class="product-favourite">
-                                    <a href="#" class="favme fa fa-heart"></a>
+                                  <%= link_to "", favorites_path(product_id: product.id), method: :post, class: "favme fa fa-heart" %>
                                 </div>
                             </div>
                             <!-- Product Description -->
