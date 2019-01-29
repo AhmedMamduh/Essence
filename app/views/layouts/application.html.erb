@@ -57,9 +57,9 @@
             <div class="header-meta d-flex clearfix justify-content-end">
                 <!-- Search Area -->
                 <div class="search-area">
-                    <form action="#" method="post">
+                    <form >
                         <input type="search" name="search" id="headerSearch" placeholder="Type for search">
-                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                        <button><i class="fa fa-search" aria-hidden="true"></i></button>
                     </form>
                 </div>
                 <!-- Favourite Area Logo-->
@@ -70,12 +70,15 @@
                 <div id="logo">
                     <%= render("favorites/fav_logo")%>
                 </div>
-                <!-- User Login Info -->
+                <!-- User Login -->
                 <div class="user-login-info">
-                    <%= link_to image_tag("core-img/user.svg"), user_session_path %>
+                    <% if user_signed_in? %>
+                        <%= link_to image_tag("core-img/user.svg"), destroy_user_session_path, method: :delete,  data: { confirm: "Log Out!?" } %>
+                    <% else %>
+                        <%= link_to image_tag("core-img/user.svg"), user_session_path %>
+                    <% end %>
                 </div>
             </div>
-
         </div>
     </header>
     <!-- ##### Header Area End ##### -->

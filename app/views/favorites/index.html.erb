@@ -24,7 +24,7 @@
                                 <div class="product-topbar d-flex align-items-center justify-content-between">
                                     <!-- Total Products -->
                                     <div class="total-products">
-                                        <p><span><%= Favorite.count %></span> favorites products </p>
+                                        <p><span><%= current_user.favorites.count %></span> favorites products </p>
                                         <br>
                                         <p id="notice"><%= notice %></p>
                                     </div>

@@ -4,7 +4,11 @@ class FavoritesController < ApplicationController
   # GET /favorites
   # GET /favorites.json
   def index
-    @favorites = Favorite.all
+    if user_signed_in? 
+        @favorites = current_user.favorites.order("created_at DESC")
+    else
+      redirect_to user_session_path, notice: 'Please login first'
+    end 
   end
 
   # GET /favorites/1
@@ -24,17 +28,22 @@ class FavoritesController < ApplicationController
   # POST /favorites
   # POST /favorites.json
   def create
-    product = Product.find(params[:product_id])
-    current_product_fevorite = Favorite.find_by(product_id: product.id)
-    
-    if current_product_fevorite
-      current_product_fevorite.destroy
-    else
-      @favorite = Favorite.new(product_id: product.id)
-      if @favorite.save
+    if user_signed_in? 
+
+        product = Product.find(params[:product_id])
+        current_product_fevorite = Favorite.find_by(product_id: product.id, user_id: current_user.id)
+        if current_product_fevorite
+           current_product_fevorite.destroy
+          else
+          @favorite = Favorite.new(product_id: product.id, user_id: current_user.id)
+          if @favorite.save
+            else
+             render :new
+          end
+        end
+
       else
-        render :new
-      end
+        render :js => "alert('Please login first');"
     end
   end
 
@@ -70,6 +79,6 @@ class FavoritesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def favorite_params
-      params.require(:favorite).permit(:product_id)
+      params.require(:favorite).permit(:product_id, :user_id)
     end
 end

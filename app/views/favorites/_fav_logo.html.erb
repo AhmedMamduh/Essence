@@ -1,8 +1,9 @@
-<% unless Favorite.all.empty? %>
-
-	<% @logo = Favorite.count %>
-	<%= @logo %>
- <% else %>
-
+<% if user_signed_in? %>
+	<% unless current_user.favorites.empty? %>
+		 <% @logo = current_user.favorites.count %>
+		 <%= @logo %>
+	   <% else %>
+	<% end %>
+    <% else %>
 <% end %>
 
