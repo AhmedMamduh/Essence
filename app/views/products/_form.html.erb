@@ -1,38 +1,52 @@
-<%= form_with(model: product, local: true) do |form| %>
-  <% if product.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+<div class="cta-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="page-title text-center">
+                    <br>
+                    <h2>New Product</h2>
+                </div>
 
-      <ul>
-      <% product.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+                  <%= form_with(model: product, local: true) do |form| %>
+                    <% if product.errors.any? %>
+                      <div id="error_explanation">
+                        <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+                        <ul>
+                        <% product.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                        </ul>
+                      </div>
+                    <% end %>
+
+                    <div class="form-group">
+                      <%= form.label :title %>
+                      <%= form.text_field :title, class: "form-control" %>
+                    </div>
+
+                    <div class="form-group">
+                      <%= form.label :image %>
+                      <%= form.file_field :image, class: "form-control" %>
+                    </div>
+
+                    <div class="form-inline">
+                      <%= select_tag(:category_id, options_for_select(@categories), class: "form-control") %>
+                    </div>
+
+                    <br>  
+
+                    <div class="form-group">
+                      <%= form.label :price %>
+                      <%= form.text_field :price, class: "form-control" %>
+                    </div>
+
+                    <div class="actions">
+                      <%= form.submit "Create", class: "btn btn-info" %>
+                    </div>
+                    <%= link_to 'Back', products_path %>
+                  <% end %>
+            </div>
+        </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
-  </div>
-
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
-  </div>
-
-  <div class="field">
-    <%= select_tag(:category_id, options_for_select(@categories)) %>
-  </div>
-
-  <br>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
