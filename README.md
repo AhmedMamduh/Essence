@@ -14,6 +14,8 @@ Postgresql DB
 
 Simple unit testing with rspec.
 
+Only admin can delete products or categories
+
 Implementing categories:
 
 created a scaffold for Category and Product and Category_id column in the Product model acts a foreign key between Product and Category. After created two models, defined the relationship between them. also new Products are include what category they belongs to.
