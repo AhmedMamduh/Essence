@@ -30,17 +30,18 @@
                             <div class="catagories-menu">
                                 <ul id="menu-content2" class="menu-content collapse show">
                                     <!-- Single Item -->
-
                                     <% @categories.each do |category| %>
+                                        <li><%= link_to category.name , category  %></li>
 
-                                    <li data-toggle="collapse">
-                                        <%= link_to category.name , category  %></li>
+                                        <% if user_signed_in? %>
+                                            <% if current_user.email == "ahmed@gmail.com" && user_signed_in? %>
+                                                <li class="sub-menu"><%= link_to "Delete #{category.name}", category, method: :delete, data: {confirm: "Are you sure?"}  %></li>
+                                            <% end %>
+                                        <% end %>
                                     <% end %>
-
                                     <%= link_to 'New Category', new_category_path %>
                                 </ul>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -79,6 +80,12 @@
                                         <span><%= Category.find(product.category_id).name%></span>
                                             <h6><%= link_to product.title, product %></h6>
                                         <p class="product-price"><%= number_to_currency(product.price, :unit => "EGP ") %></p>
+
+                                        <% if user_signed_in? %>
+                                            <% if current_user.email == "ahmed@gmail.com"&&user_signed_in? %>
+                                                <p><%= link_to "Delete", product, method: :delete, data: {confirm: "Are you sure?"} %></p>
+                                            <% end %>
+                                        <% end %>
                                     </div>
 
                                 </div>
